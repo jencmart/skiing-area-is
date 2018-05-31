@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+
+    <security:http auto-config="true" use-expressions="false">
+
+        <security:form-login login-page="/login" login-processing-url="/login"
+                             username-parameter="username"
+                             password-parameter="password"
+        default-target-url="/"
+        authentication-failure-url="/login?error=true"/>
+
+        <security:logout logout-url="/logout" logout-success-url="/login?logout=true"/>
+
+        <security:intercept-url pattern="/management/admin/**" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/management/**" access="ROLE_MANAGER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/profile/**" access="ROLE_CUSTOMER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/**"      access="ROLE_ANONYMOUS,ROLE_CUSTOMER,ROLE_MANAGER,ROLE_ADMIN" />
+
+    </security:http>
+
+    <security:authentication-manager>
+
+       <security:authentication-provider ref="authProvider"/>
+        <!--    <security:authentication-provider ref="myAuthenticationProvider">
+             </security:authentication-provider>-->
+         </security:authentication-manager>
+
+         <bean id="encoder"
+                     class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+             <constructor-arg name="strength" value="11" />
+         </bean>
+
+         <bean id="authProvider"
+               class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+             <property name="userDetailsService" ref="myUserDetailsService" />
+             <property name="passwordEncoder" ref="encoder" />
+         </bean>
+
+
+     </beans>
