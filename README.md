@@ -28,16 +28,24 @@ With Maven Jetty plugin it can be easily deployed.
 
 ### Installing
 
-1. Create database -  skiingAreaIS_db_dump.sql
-
-2. Edit DB connection properties accordingly
+1. Clone git repo
 
 ```
-vim ./main/java/resources/application.properties
+git clone https://github.com/MartanJe/skiingAreaIS.git
 ```
 
-3. Go to project root folder 
+2. Create database using **skiingAreaIS_db_dump.sql**
 
+3. Edit DB connection properties accordingly
+
+```
+vim ./skiingAreaIS/main/java/resources/application.properties
+```
+
+4. Go to project root folder 
+```
+cd ./skiingAreaIS
+```
 ```
 mvn clean install
 ```
