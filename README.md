@@ -11,7 +11,9 @@
     by Martin Jenc   |___/                                     
 ```
 Software engineering class team project.
+
 Modeling and documentation were team work.
+
 Implementation was done by myself.
  
 ## Getting Started
