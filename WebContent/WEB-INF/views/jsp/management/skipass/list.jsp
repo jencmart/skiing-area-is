@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/skipass"/>
+<c:set var="contextUrl" value="/management/skipass"/>
 
 <t:genericPageManagment title="SLA | Skipass" viewname="skipass">
 
@@ -89,14 +89,15 @@
                         <td>
 
                             <spring:url value="${contextUrl}/${chipCard.idSkipass}" var="detailUrl"/>
-                            <spring:url value="${contextUrl}/${chipCard.idSkipass}/update" var="updateUrl" />
-                            <spring:url value="${contextUrl}/${chipCard.idSkipass}/delete" var="deleteUrl" />
-                            <form action = "${deleteUrl}" method = "post">
+                            <spring:url value="${contextUrl}/${chipCard.idSkipass}/update" var="updateUrl"/>
+                            <spring:url value="${contextUrl}/${chipCard.idSkipass}/delete" var="deleteUrl"/>
+                            <form action="${deleteUrl}" method="post">
                                 <a class="btn  btn-xs btn-success" href="${detailUrl}">
                                     <i class="fa fa-search  fa-xs "></i> Detail</a>
 
                                 <button class="btn btn-xs btn-danger"
-                                        type="submit"> <i class="fa fa-trash  fa-xs "></i> Smazat</button>
+                                        type="submit"><i class="fa fa-trash  fa-xs "></i> Smazat
+                                </button>
                                 <sec:csrfInput/>
                             </form>
 

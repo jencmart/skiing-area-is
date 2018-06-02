@@ -8,10 +8,10 @@ import cz.cvut.fit.si1.sla.domain.SlaUser;
 import cz.cvut.fit.si1.sla.dto.CustomerOrderDto;
 import cz.cvut.fit.si1.sla.interceptor.UserInterceptor;
 import cz.cvut.fit.si1.sla.model.ShoppingCart;
-import cz.cvut.fit.si1.sla.serviceImpl.ShoppingCartService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaCustomerService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaOrderService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaSkipassService;
+import cz.cvut.fit.si1.sla.service.ShoppingCartService;
+import cz.cvut.fit.si1.sla.service.SlaCustomerService;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
+import cz.cvut.fit.si1.sla.service.SlaSkipassService;
 import cz.cvut.fit.si1.sla.validator.CustomerOrderFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
+/**
+ * Controller for shopping cart
+ */
 @Controller
 @RequestMapping("shoppingcart")
 public class ShoppingCartController {
@@ -42,12 +45,23 @@ public class ShoppingCartController {
     @Autowired
     CustomerOrderFormValidator customerOrderFormValidator;
 
-
+    /**
+     * Gets shopping cart from session
+     *
+     * @param request current request
+     * @return shopping cart from session
+     */
     private ShoppingCart getShoppingCart(HttpServletRequest request) {
         return (ShoppingCart) request.getSession().getAttribute("shoppingCart");
     }
 
-
+    /**
+     * Adds product to shopping cart
+     *
+     * @param id      id of product
+     * @param request request
+     * @return number of products in shopping cart
+     */
     @RequestMapping(value = "{id}/add", method = RequestMethod.POST)
     public @ResponseBody
     int addToShoppingCart(@PathVariable("id") long id,
@@ -62,6 +76,14 @@ public class ShoppingCartController {
         return shoppingCartService.nuberOfItems(shoppingCart);
     }
 
+    /**
+     * Sets count of certain item in shopping cart
+     *
+     * @param id      id of item
+     * @param cnt     count of item
+     * @param request request
+     * @return null
+     */
     @RequestMapping(value = "{id}/setcount/{cnt}", method = RequestMethod.POST)
     public @ResponseBody
     HashMap<String, Long> setCountOfItem(@PathVariable("id") long id, @PathVariable("cnt") int cnt,
@@ -82,6 +104,13 @@ public class ShoppingCartController {
         return null;
     }
 
+    /**
+     * Removes product from shopping cart
+     *
+     * @param id      id of product
+     * @param request request
+     * @return number of products in shopping cart
+     */
     @RequestMapping(value = "{id}/remove", method = RequestMethod.POST)
     public @ResponseBody
     int removeFromShoppingCart(@PathVariable("id") long id,
@@ -96,6 +125,13 @@ public class ShoppingCartController {
         return shoppingCartService.nuberOfItems(shoppingCart);
     }
 
+    /**
+     * Shows all items from shopping cart
+     *
+     * @param model   model
+     * @param request request
+     * @return shopping cart index view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllItems(Model model,
                                HttpServletRequest request) {
@@ -106,6 +142,15 @@ public class ShoppingCartController {
     }
 
 
+    /**
+     * Handles send form of shopping cart checkout, redirects back if input isn't valid
+     *
+     * @param customerOrderDto filled order from form
+     * @param request          request
+     * @param result           result
+     * @param model            model
+     * @return view
+     */
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public String checkoutConfirm(@ModelAttribute("customerOrderForm") CustomerOrderDto customerOrderDto,
                                   HttpServletRequest request,
@@ -145,7 +190,13 @@ public class ShoppingCartController {
         return "jsp/front/shoppingcart/orderSuccess";
     }
 
-
+    /**
+     * Handles checkout (GET), redirects if shopping cart is empty
+     *
+     * @param model   model
+     * @param request request
+     * @return checkout view
+     */
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public String checkout(Model model,
                            HttpServletRequest request) {
@@ -164,7 +215,11 @@ public class ShoppingCartController {
         return "jsp/front/shoppingcart/checkout";
     }
 
-
+    /**
+     * Prepopulates customer form if user is logged in
+     *
+     * @param customerOrderDto customer order dto
+     */
     private void prepopulateCustomerForm(CustomerOrderDto customerOrderDto) {
         // if user is logged
         if (UserInterceptor.isUserLogged()) {
@@ -182,7 +237,4 @@ public class ShoppingCartController {
             }
         }
     }
-
-
 }
-

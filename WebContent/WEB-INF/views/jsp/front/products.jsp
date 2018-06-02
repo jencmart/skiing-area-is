@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ page contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -17,7 +17,7 @@
 
 
 
-        <spring:url value="/resources/images/carousel.jpg" var="imgResource" />
+        <spring:url value="/resources/images/carousel.jpg" var="imgResource"/>
 
 
            <div class="row text-center">
@@ -30,10 +30,12 @@
                        <img class="card-img-top" src="${imgResource}" alt="">
                        <div class="card-body">
                            <h4 class="card-title">Skipass</h4>
-                           <p class="card-text">Nake velmi zajimave info o skipassu. <br/> Pocet dnu: ${skipass.numberOfDays} <br/> Cena: ${skipass.price} Kc</p>
+                           <p class="card-text">Nake velmi zajimave info o skipassu. <br/> Pocet
+                               dnu: ${skipass.numberOfDays} <br/> Cena: ${skipass.price} Kc</p>
                        </div>
                        <div class="card-footer">
-                           <a class="btn btn-success skipassBtn" href="#" data-idskipass="${skipass.idSkipass}"  >Koupit!</a>
+                           <a class="btn btn-success skipassBtn" href="#"
+                              data-idskipass="${skipass.idSkipass}">Koupit!</a>
                            <sec:csrfInput/>
                        </div>
                    </div>
@@ -42,7 +44,6 @@
 
 
         </c:forEach>
-
 
 
            </div>

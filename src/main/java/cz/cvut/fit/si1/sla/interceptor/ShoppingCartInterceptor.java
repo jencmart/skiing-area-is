@@ -1,7 +1,7 @@
 package cz.cvut.fit.si1.sla.interceptor;
 
 import cz.cvut.fit.si1.sla.model.ShoppingCart;
-import cz.cvut.fit.si1.sla.serviceImpl.ShoppingCartService;
+import cz.cvut.fit.si1.sla.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,11 +22,12 @@ public class ShoppingCartInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * Creates shoppingCart and saves it to the session in case it's not already there
-     * @param req
-     * @param res
-     * @param handler
-     * @return
-     * @throws Exception
+     *
+     * @param req     request
+     * @param res     response
+     * @param handler handler
+     * @return true if everything is ok
+     * @throws Exception in case of errors
      */
     @Override
     public boolean preHandle(
@@ -42,11 +43,12 @@ public class ShoppingCartInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * Handles adding number of items in shopping cart into the model
-     * @param request
-     * @param response
-     * @param handler
-     * @param model
-     * @throws Exception
+     *
+     * @param request  request
+     * @param response response
+     * @param handler  handler
+     * @param model    model
+     * @throws Exception throws exception in case of errors
      */
     @Override
     public void postHandle(

@@ -2,6 +2,9 @@ package cz.cvut.fit.si1.sla.domain;
 
 import javax.persistence.*;
 
+/**
+ * Represents rented card in the database
+ */
 @Entity
 @Table(name = "sla_rent")
 public class SlaRent {

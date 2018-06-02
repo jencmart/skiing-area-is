@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/employee"/>
+<c:set var="contextUrl" value="/management/employee"/>
 
 <t:genericPageManagment title="SLA | Zamestnanec detail" viewname="employee">
 
@@ -42,51 +42,51 @@
 
 
         <div class="col-lg-6">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="row">
-                    <label class="col-sm-3">Jmeno</label>
-                    <div class="col-sm-10">
-                            ${slaEmployee.name}
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label class="col-sm-3">Jmeno</label>
+                        <div class="col-sm-10">
+                                ${slaEmployee.name}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label class="col-sm-3">Prijmeni</label>
+                        <div class="col-sm-10">
+                                ${slaEmployee.surname}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label class="col-sm-3">Telefon</label>
+                        <div class="col-sm-10">
+                                ${slaEmployee.phone}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label class="col-sm-3">Zamestnani</label>
+                        <div class="col-sm-10">
+                                ${slaEmployee.job.title}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <label class="col-sm-3">Prijmeni</label>
-                    <div class="col-sm-10">
-                            ${slaEmployee.surname}
-                    </div>
-                </div>
+
+            <div class="row">
+                <spring:url value="${contextUrl}" var="listUrl"/>
+                <a class="btn   btn-primary" href="${listUrl}">
+                    <i class="fa fa-angle-left  fa-sm "></i> Zpet</a>
+
             </div>
-
-            <div class="col-lg-6">
-                <div class="row">
-                    <label class="col-sm-3">Telefon</label>
-                    <div class="col-sm-10">
-                            ${slaEmployee.phone}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row">
-                    <label class="col-sm-3">Zamestnani</label>
-                    <div class="col-sm-10">
-                            ${slaEmployee.job.title}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-<div class="row">
-    <spring:url value="${contextUrl}" var="listUrl"/>
-    <a class="btn   btn-primary" href="${listUrl}">
-        <i class="fa fa-angle-left  fa-sm "></i> Zpet</a>
-
-</div>
 
         </div>
 

@@ -1,24 +1,21 @@
 package cz.cvut.fit.si1.sla.dto;
 
+/**
+ * Data transfer object for customer order
+ */
 public class CustomerOrderDto {
 
     private String name;
 
-
     private String surname;
-
 
     private String email;
 
-
     private String phone;
-
 
     private String street;
 
-
     private String city;
-
 
     private String postalCode;
 

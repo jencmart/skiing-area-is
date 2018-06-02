@@ -73,7 +73,9 @@
                 that.enforceFocus()
 
                 transition ?
-                    that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown') }) :
+                    that.$element.one($.support.transition.end, function () {
+                        that.$element.focus().trigger('shown')
+                    }) :
                     that.$element.focus().trigger('shown')
 
             })
@@ -117,7 +119,7 @@
         , escape: function () {
             var that = this
             if (this.isShown && this.options.keyboard) {
-                this.$element.on('keyup.dismiss.modal', function ( e ) {
+                this.$element.on('keyup.dismiss.modal', function (e) {
                     e.which == 27 && that.hide()
                 })
             } else if (!this.isShown) {
@@ -181,7 +183,7 @@
             } else if (!this.isShown && this.$backdrop) {
                 this.$backdrop.removeClass('in')
 
-                $.support.transition && this.$element.hasClass('fade')?
+                $.support.transition && this.$element.hasClass('fade') ?
                     this.$backdrop.one($.support.transition.end, callback) :
                     callback()
 
@@ -233,7 +235,8 @@
         var $this = $(this)
             , href = $this.attr('href')
             , $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) //strip for ie7
-            , option = $target.data('modal') ? 'toggle' : $.extend({ remote:!/#/.test(href) && href }, $target.data(), $this.data())
+            ,
+            option = $target.data('modal') ? 'toggle' : $.extend({remote: !/#/.test(href) && href}, $target.data(), $this.data())
 
         e.preventDefault()
 

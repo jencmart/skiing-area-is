@@ -1,6 +1,4 @@
-
-
-$(".rent").click(function() {
+$(".rent").click(function () {
 
     let idOrder = $(this).data("order");
     let idArticle = $(this).data("article");
@@ -21,7 +19,7 @@ $(".find").click(function () {
     $("#find").modal('show');
 });
 
-$(".return").click(function() {
+$(".return").click(function () {
 
     let idOrder = $(this).data("order");
     let idArticle = $(this).data("article");
@@ -29,37 +27,36 @@ $(".return").click(function() {
 
     $.ajax({
         type: 'POST',
-        url: '/management/order/' + idOrder + '/return/' + idArticle ,
+        url: '/management/order/' + idOrder + '/return/' + idArticle,
         data: {
-            '_csrf' : token,
-            success(data){
-                window.location.replace("/management/order/"+idOrder);
+            '_csrf': token,
+            success(data) {
+                window.location.replace("/management/order/" + idOrder);
             }
         }
     });
 });
 
 
-$( "#target" ).submit(function( event ) {
+$("#target").submit(function (event) {
 
     let rfid = $("#rfid").val();
     let token = $("input[name='_csrf']").val();
 
     $.ajax({
         type: 'GET',
-        url: '/management/chipcard/ajaxFind/' + rfid ,
+        url: '/management/chipcard/ajaxFind/' + rfid,
         data: {
-            '_csrf' : token
+            '_csrf': token
         },
         success: function (chipcard) { //todo error nefunguje mrdka
-            if(chipcard.length === 0) {
+            if (chipcard.length === 0) {
                 alert("Karta neni v systemu evidovana!");
             }
             else if (chipcard["cardRented"] === "true") {
                 alert("Karta je evidovana jako zapujcena!\nPouzijte prosim jinou kartu!");
             }
-            else
-            {
+            else {
                 let chipcardId = chipcard["idChipCard"];
                 let chipcardPrice = chipcard["depositPrice"];
 
@@ -74,30 +71,27 @@ $( "#target" ).submit(function( event ) {
     event.preventDefault();
 });
 
-$( "#secondary" ).submit(function( event ) {
+$("#secondary").submit(function (event) {
 
     let token = $("input[name='_csrf']").val();
-    let orderId =  $("input[name='orderid']").val();
+    let orderId = $("input[name='orderid']").val();
     let articleId = $("input[name='articleid']").val();
     let chipcardId = $("input[name='idchipcard']").val();
 
     $.ajax({
         type: 'POST',
-        url: '/management/order/' + orderId + '/rent' ,
+        url: '/management/order/' + orderId + '/rent',
         data: {
-            '_csrf' : token,
-            'orderId' : orderId,
-            'articleId' : articleId,
-            'chipCardId' : chipcardId
-        } , success(data){
-            window.location.replace("/management/order/"+orderId);
+            '_csrf': token,
+            'orderId': orderId,
+            'articleId': articleId,
+            'chipCardId': chipcardId
+        }, success(data) {
+            window.location.replace("/management/order/" + orderId);
         }
     });
 
 });
-
-
-
 
 
 //****************************************************************
@@ -105,13 +99,10 @@ $( "#secondary" ).submit(function( event ) {
 //****************************************************************
 
 
-$("#additems").click(function() {
+$("#additems").click(function () {
 
     $("#addArticlesModal").modal('show');
 });
-
-
-
 
 
 $.fn.exists = function () {
@@ -121,37 +112,34 @@ $.fn.exists = function () {
 
 function updateShoppingCartTable(myId, price, numdays) {
 
-    let r = $("tbody#tableOrders").find("tr#"+myId);
+    let r = $("tbody#tableOrders").find("tr#" + myId);
 
-    if(r.exists()  )
-    {
-        let input = $("input[name='quant["+myId+"]']");
+    if (r.exists()) {
+        let input = $("input[name='quant[" + myId + "]']");
         let currentVal = parseInt(input.val());
         input.val(currentVal + 1).change();
-        changeCount(myId, (currentVal+1));
+        changeCount(myId, (currentVal + 1));
     }
-    else
-    {
-       $("tbody#tableOrders:last-child").append(
-           "<tr  id=\""+ myId + "\"  >" +
-           "<td>Skipass</td><td>" + numdays +"</td><td ><span class=\"item-price\">" + price+ "</span> Kc</td>" +
-           "<td>" +
-           "<div class=\"input-group col-sm-5\">" +
-           "<span class=\"input-group-btn btn-group-xs\">" +
-           "<button type=\"button\" class=\"btn btn-danger btn-number btn-xs\"  data-type=\"minus\" data-field=\"quant["+myId+"]\">" +
-           "<span class=\"fa fa-minus fa-xs\"></span></button></span>" +
-           "<input type=\"text\" disabled=\"disabled\" name=\"quant["+myId+"]\" class=\"form-control input-number\" value=\"1\" min=\"1\" max=\"100\">" +
-           "<span class=\"input-group-btn\">" +
-           " <button type=\"button\" class=\"btn btn-success btn-number btn-xs\"   data-type=\"plus\"  data-field=\"quant["+myId+"]\"><span class=\"fa fa-plus fa-xs\"></span></button></span></div>" +
-           "</td>"+
-           "<td><a class=\"btn  btn-xs btn-danger btn-delete-item\" href=\"#\" ><i class=\"fa fa-trash fa-xs\"></i> Odstranit !</a></td></tr>");
+    else {
+        $("tbody#tableOrders:last-child").append(
+            "<tr  id=\"" + myId + "\"  >" +
+            "<td>Skipass</td><td>" + numdays + "</td><td ><span class=\"item-price\">" + price + "</span> Kc</td>" +
+            "<td>" +
+            "<div class=\"input-group col-sm-5\">" +
+            "<span class=\"input-group-btn btn-group-xs\">" +
+            "<button type=\"button\" class=\"btn btn-danger btn-number btn-xs\"  data-type=\"minus\" data-field=\"quant[" + myId + "]\">" +
+            "<span class=\"fa fa-minus fa-xs\"></span></button></span>" +
+            "<input type=\"text\" disabled=\"disabled\" name=\"quant[" + myId + "]\" class=\"form-control input-number\" value=\"1\" min=\"1\" max=\"100\">" +
+            "<span class=\"input-group-btn\">" +
+            " <button type=\"button\" class=\"btn btn-success btn-number btn-xs\"   data-type=\"plus\"  data-field=\"quant[" + myId + "]\"><span class=\"fa fa-plus fa-xs\"></span></button></span></div>" +
+            "</td>" +
+            "<td><a class=\"btn  btn-xs btn-danger btn-delete-item\" href=\"#\" ><i class=\"fa fa-trash fa-xs\"></i> Odstranit !</a></td></tr>");
         updateTotalPrice();
     }
 }
 
 
-
-$(".skipassBtn").click(function() { //todo edit adresa
+$(".skipassBtn").click(function () { //todo edit adresa
     let myId = $(this).data("idskipass");
     let price = $(this).data("price");
     let numdays = $(this).data("numdays");
@@ -162,7 +150,7 @@ $(".skipassBtn").click(function() { //todo edit adresa
         type: 'POST',
         url: '/management/order/new/' + myId + '/add',
         data: {
-            '_csrf' : token
+            '_csrf': token
         },
         success: function (cntItems) {
 
@@ -173,27 +161,25 @@ $(".skipassBtn").click(function() { //todo edit adresa
 
 });
 
-function updateTotalPrice(){
+function updateTotalPrice() {
     let price = 0;
 
-    $(".item-price").each(function() {
+    $(".item-price").each(function () {
         let line = $(this).closest('tr');
-        if(line.is(":visible"))
-            price +=  parseFloat( $( this )[0].innerText) ;
+        if (line.is(":visible"))
+            price += parseFloat($(this)[0].innerText);
     });
 
     $("#total-price")[0].innerText = price;
 }
 
 
+$('#tableOrders').on('click', '.btn-delete-item', function () {
 
 
-$('#tableOrders').on('click', '.btn-delete-item',function () {
-
-
-    let value = parseInt($(this).closest("tr").find(".item-price")[0].innerText) ;
+    let value = parseInt($(this).closest("tr").find(".item-price")[0].innerText);
     let id = $(this).closest("tr").attr("id");
-    $("#"+id).fadeOut().remove();
+    $("#" + id).fadeOut().remove();
 
     let token = $("input[name='_csrf']").val();
 
@@ -201,7 +187,7 @@ $('#tableOrders').on('click', '.btn-delete-item',function () {
         type: 'POST',
         url: '/management/order/new/' + id + '/remove',
         data: {
-            '_csrf' : token
+            '_csrf': token
         },
         success: function (cnt) {
             updateShoppingCardCount(cnt);
@@ -223,44 +209,43 @@ function changeCount(itemId, cnt) {
         type: 'POST',
         url: '/management/order/new/' + itemId + '/setcount/' + cnt,
         data: {
-            '_csrf' : token
+            '_csrf': token
         },
         success: function (resp) {
-            $("tr[id='"+ itemId + "']").find("span.item-price")[0].innerText = (cnt * resp['price']) ;
+            $("tr[id='" + itemId + "']").find("span.item-price")[0].innerText = (cnt * resp['price']);
             updateTotalPrice();
         }
     });
 }
 
 
-
 //plugin bootstrap minus and plus
 //http://jsfiddle.net/laelitenetwork/puJ6G/
-$('#tableOrders').on('click', '.btn-number', function(e){
+$('#tableOrders').on('click', '.btn-number', function (e) {
     e.preventDefault();
 
     fieldName = $(this).attr('data-field');
-    type      = $(this).attr('data-type');
-    let input = $("input[name='"+fieldName+"']");
+    type = $(this).attr('data-type');
+    let input = $("input[name='" + fieldName + "']");
     let currentVal = parseInt(input.val());
     if (!isNaN(currentVal)) {
         let id = $(this).closest("tr").attr("id");
 
-        if(type === 'minus') {
-            if(currentVal > input.attr('min')) {
+        if (type === 'minus') {
+            if (currentVal > input.attr('min')) {
                 input.val(currentVal - 1).change();
-                changeCount(id, (currentVal-1));
+                changeCount(id, (currentVal - 1));
             }
-            if(parseInt(input.val()) === input.attr('min')) {
+            if (parseInt(input.val()) === input.attr('min')) {
                 $(this).attr('disabled', true);
             }
-        } else if(type === 'plus') {
+        } else if (type === 'plus') {
 
-            if(currentVal < input.attr('max')) {
+            if (currentVal < input.attr('max')) {
                 input.val(currentVal + 1).change();
-                changeCount(id, (currentVal+1));
+                changeCount(id, (currentVal + 1));
             }
-            if(parseInt(input.val()) === input.attr('max')) {
+            if (parseInt(input.val()) === input.attr('max')) {
                 $(this).attr('disabled', true);
             }
         }
@@ -268,24 +253,24 @@ $('#tableOrders').on('click', '.btn-number', function(e){
         input.val(0);
     }
 });
-$('.input-number').focusin(function(){
+$('.input-number').focusin(function () {
     $(this).data('oldValue', $(this).val());
 });
-$('.input-number').change(function() {
+$('.input-number').change(function () {
 
-    minValue =  parseInt($(this).attr('min'));
-    maxValue =  parseInt($(this).attr('max'));
+    minValue = parseInt($(this).attr('min'));
+    maxValue = parseInt($(this).attr('max'));
     valueCurrent = parseInt($(this).val());
 
     name = $(this).attr('name');
-    if(valueCurrent >= minValue) {
-        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+    if (valueCurrent >= minValue) {
+        $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
     } else {
         alert('Sorry, the minimum value was reached');
         $(this).val($(this).data('oldValue'));
     }
-    if(valueCurrent <= maxValue) {
-        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+    if (valueCurrent <= maxValue) {
+        $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
     } else {
         alert('Sorry, the maximum value was reached');
         $(this).val($(this).data('oldValue'));

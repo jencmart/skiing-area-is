@@ -1,7 +1,7 @@
 package cz.cvut.fit.si1.sla.controller.management;
 
 import cz.cvut.fit.si1.sla.domain.SlaOrderSkipassArticle;
-import cz.cvut.fit.si1.sla.serviceImpl.*;
+import cz.cvut.fit.si1.sla.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * Controller for management homepage
+ */
 @Controller
 @RequestMapping("/management")
 public class ManagementWelcomeController {
@@ -16,7 +19,6 @@ public class ManagementWelcomeController {
 
     @Autowired
     SlaAddressService addressService;
-
 
     @Autowired
     SlaCustomerService customerService;
@@ -36,7 +38,11 @@ public class ManagementWelcomeController {
     @Autowired
     SlaSkipassService skipassService;
 
-
+    /**
+     * Management homepage
+     *
+     * @return view
+     */
     @RequestMapping("")
     public ModelAndView managementWelcome() {
         //    SlaUser user = (SlaUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

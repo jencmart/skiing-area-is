@@ -1,5 +1,8 @@
 package cz.cvut.fit.si1.sla.dto;
 
+/**
+ * Data transfer object for employee user
+ */
 public class EmployeeUserRegisterDto {
 
     private String name;

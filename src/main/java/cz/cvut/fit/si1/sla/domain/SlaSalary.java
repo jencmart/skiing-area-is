@@ -3,6 +3,9 @@ package cz.cvut.fit.si1.sla.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Represents salary of employee in the database
+ */
 @Entity
 @Table(name = "sla_salaries")
 public class SlaSalary implements Serializable {

@@ -53,7 +53,8 @@
 
 
             <%--FORM --%>
-        <form:form class="form-horizontal" method="post" modelAttribute="slaChipCardForm" action="${checkoutConfirmAction}">
+        <form:form class="form-horizontal" method="post" modelAttribute="slaChipCardForm"
+                   action="${checkoutConfirmAction}">
 
 
 		<form:hidden path="idChipCard"/>
@@ -104,7 +105,6 @@
 
             <sec:csrfInput/>
 	</form:form>
-
 
 
     </div>

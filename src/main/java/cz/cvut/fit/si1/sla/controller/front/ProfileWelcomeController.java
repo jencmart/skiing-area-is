@@ -3,8 +3,8 @@ package cz.cvut.fit.si1.sla.controller.front;
 
 import cz.cvut.fit.si1.sla.domain.*;
 import cz.cvut.fit.si1.sla.interceptor.UserInterceptor;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaCustomerService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaOrderService;
+import cz.cvut.fit.si1.sla.service.SlaCustomerService;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Profile controller
+ */
 @Controller
 @RequestMapping("/profile")
 public class ProfileWelcomeController {
@@ -25,6 +28,12 @@ public class ProfileWelcomeController {
     @Autowired
     SlaOrderService orderService;
 
+    /**
+     * Handles profile page, redirects to login if no user is logged
+     *
+     * @param model model
+     * @return profile view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showProfile(Model model) {
         if (!UserInterceptor.isUserLogged()) {
@@ -58,5 +67,4 @@ public class ProfileWelcomeController {
 
         return "jsp/front/profile";
     }
-
 }

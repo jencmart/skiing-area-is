@@ -4,14 +4,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/chipcard"/>
+<c:set var="contextUrl" value="/management/chipcard"/>
 
 <t:genericPageManagment title="SLA | Chipcard detail" viewname="chipcard">
 
     <jsp:attribute name="header">
 
    <div class="col-lg-12">
-            <h1>Cipova Karta <small>${slaChipCard.rfidId}</small></h1>
+       <h1>Cipova Karta
+           <small>${slaChipCard.rfidId}</small>
+       </h1>
 
    </div>
 
@@ -61,10 +63,10 @@
             <label class="col-sm-3">Odstranena</label>
             <c:choose>
               <c:when test="${not empty slaChipCard.removed}">
-                  <div class="col-sm-10">  ${slaChipCard.removedTimestamp} </div>
+                  <div class="col-sm-10"> ${slaChipCard.removedTimestamp} </div>
               </c:when>
               <c:otherwise>
-                  <div class="col-sm-10"> --- </div>
+                  <div class="col-sm-10"> ---</div>
               </c:otherwise>
             </c:choose>
         </div>
@@ -72,10 +74,10 @@
 
         <div class="row">
             <spring:url value="${contextUrl}" var="listUrl"/>
-            <spring:url value="${contextUrl}/${slaChipCard.idChipCard}/update" var="updateUrl" />
-            <spring:url value="${contextUrl}/${slaChipCard.idChipCard}/delete" var="deleteUrl" />
+            <spring:url value="${contextUrl}/${slaChipCard.idChipCard}/update" var="updateUrl"/>
+            <spring:url value="${contextUrl}/${slaChipCard.idChipCard}/delete" var="deleteUrl"/>
 
-            <form action = "${deleteUrl}" method = "post">
+            <form action="${deleteUrl}" method="post">
                 <a class="btn   btn-primary" href="${listUrl}">
                     <i class="fa fa-angle-left  fa-sm "></i> Zpet</a>
 
@@ -83,7 +85,8 @@
                     <i class="fa fa-edit  fa-sm "></i> Upravit</a>
 
                 <button class="btn btn-danger"
-                        type="submit"> <i class="fa fa-trash fa-sm "></i> Smazat</button>
+                        type="submit"><i class="fa fa-trash fa-sm "></i> Smazat
+                </button>
                 <sec:csrfInput/>
             </form>
 

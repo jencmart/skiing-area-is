@@ -20,6 +20,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * Checks if user is logged in
+     *
      * @return true if user logged in, otherwise returns false
      */
     public static boolean isUserLogged() {
@@ -33,7 +34,8 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * Helps determine if current view is redirected
-     * @param mv
+     *
+     * @param mv modelAndView
      * @return true if redirected false otherwise
      */
     static boolean isRedirectView(ModelAndView mv) {
@@ -47,11 +49,12 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * Handles adding user details to the model
-     * @param req
-     * @param res
-     * @param o
-     * @param model
-     * @throws Exception
+     *
+     * @param req   request
+     * @param res   response
+     * @param o     object
+     * @param model model
+     * @throws Exception in case of errors
      */
     @Override
     public void postHandle(
@@ -67,10 +70,10 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         }
     }
 
-
     /**
      * Add basic info about the logged user to the model
-     * @param model
+     *
+     * @param model model
      */
     private void addToModelUserDetails(ModelAndView model) {
 

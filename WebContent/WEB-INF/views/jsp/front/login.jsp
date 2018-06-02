@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <t:genericPageFront viewname="login">
 
     <jsp:attribute name="frontbody">
@@ -21,7 +21,7 @@
                        action="${checkoutConfirmAction}">
 
     <%-- username --%>
-    <c:set var="from1" value="username"/>
+                <c:set var="from1" value="username"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Username</label>

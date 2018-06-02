@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/customer"/>
+<c:set var="contextUrl" value="/management/customer"/>
 
 <t:genericPageManagment title="SLA | Objednavka detail" viewname="customer">
 
@@ -43,23 +43,23 @@
 
 
         <div class="row">
-    <div class="col-lg-6">
-        <div class="row">
-            <label class="col-sm-3">Jmeno</label>
-            <div class="col-sm-10">
-                    ${slaCustomer.name}
-            </div>
-        </div>
-    </div>
-
-        <div class="col-lg-6">
-            <div class="row">
-                <label class="col-sm-3">Prijmeni</label>
-                <div class="col-sm-10">
-                        ${slaCustomer.surname}
+            <div class="col-lg-6">
+                <div class="row">
+                    <label class="col-sm-3">Jmeno</label>
+                    <div class="col-sm-10">
+                            ${slaCustomer.name}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="col-lg-6">
+                <div class="row">
+                    <label class="col-sm-3">Prijmeni</label>
+                    <div class="col-sm-10">
+                            ${slaCustomer.surname}
+                    </div>
+                </div>
+            </div>
 
         </div>
 
@@ -87,11 +87,11 @@
 
                         <td>
                              <c:choose>
-                                       <c:when test = "${order.paid}">
+                                       <c:when test="${order.paid}">
                                            <span class="label label-success">Zaplaceno</span>
                                      </c:when>
 
-                                     <c:when test = "${!order.paid}">
+                                     <c:when test="${!order.paid}">
                                            <span class="label label-danger">Nezaplaceno</span>
                                      </c:when>
                                </c:choose>
@@ -111,7 +111,6 @@
         </div>
 
     </div>
-
 
 
 </div>

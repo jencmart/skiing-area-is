@@ -3,6 +3,9 @@ package cz.cvut.fit.si1.sla.domain;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents order skipass article in the database
+ */
 @Entity
 @Table(name = "sla_order_skipass_article")
 public class SlaOrderSkipassArticle {

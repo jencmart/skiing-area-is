@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/order/new"/>
+<c:set var="contextUrl" value="/management/order/new"/>
 
 <t:genericPageManagment title="SLA | Objednavky" viewname="order">
     <jsp:attribute name="header">
@@ -65,26 +65,30 @@
 
                 <c:forEach var="item" items="${items}">
 
-                            <tr  id="${item.skipass.idSkipass}">
+                            <tr id="${item.skipass.idSkipass}">
 
                                 <td>Skipass</td>
 
                                 <td>${item.skipass.numberOfDays}</td>
 
-                                <td ><span class="item-price">${item.price}</span> Kc</td>
+                                <td><span class="item-price">${item.price}</span> Kc</td>
 
                                 <td>
                                     <div class="input-group col-sm-5">
                                     <span class="input-group-btn btn-group-xs">
-                                          <button type="button" class="btn btn-danger btn-number btn-xs"  data-type="minus" data-field="quant[${item.skipass.idSkipass}]">
+                                          <button type="button" class="btn btn-danger btn-number btn-xs"
+                                                  data-type="minus" data-field="quant[${item.skipass.idSkipass}]">
                                             <span class="fa fa-minus fa-xs"></span>
                                           </button>
                                     </span>
 
-                                        <input type="text" disabled="disabled" name="quant[${item.skipass.idSkipass}]" class="form-control input-number" value="${item.count}" min="1" max="100">
+                                        <input type="text" disabled="disabled" name="quant[${item.skipass.idSkipass}]"
+                                               class="form-control input-number" value="${item.count}" min="1"
+                                               max="100">
 
                                         <span class="input-group-btn">
-                                          <button type="button" class="btn btn-success btn-number btn-xs"   data-type="plus"  data-field="quant[${item.skipass.idSkipass}]">
+                                          <button type="button" class="btn btn-success btn-number btn-xs"
+                                                  data-type="plus" data-field="quant[${item.skipass.idSkipass}]">
                                               <span class="fa fa-plus fa-xs"></span>
                                           </button>
                                     </span>
@@ -92,7 +96,7 @@
                                 </td>
 
                                 <td>
-                                    <a class="btn  btn-xs btn-danger btn-delete-item" href="#" >
+                                    <a class="btn  btn-xs btn-danger btn-delete-item" href="#">
                                         <i class="fa fa-trash fa-xs"></i> Odstranit !</a>
                                 </td>
                             </tr>
@@ -102,10 +106,10 @@
             </table>
         </div>
 
-        <div class="row justify-content-end text-right" >
+        <div class="row justify-content-end text-right">
             <div class="col-4">
-                   <span class="label label-success" >Cena celkem:
-                <span id="total-price" >${totalPrice}</span> Kc
+                   <span class="label label-success">Cena celkem:
+                <span id="total-price">${totalPrice}</span> Kc
                     </span>
             </div>
 
@@ -155,11 +159,13 @@
 
                     <c:forEach var="skipass" items="${skipasses}">
 
-                            <tr  id="${skipass.idSkipass}">
+                            <tr id="${skipass.idSkipass}">
                                 <td>Skipass</td>
                                 <td>${skipass.numberOfDays}</td>
-                                <td ><span>${skipass.price}</span> Kc</td>
-                                <td>    <a class="btn btn-success btn-xs skipassBtn" href="#" data-idskipass="${skipass.idSkipass}" data-price="${skipass.price}" data-numdays="${skipass.numberOfDays}"  >Pridat!</a>     </td>
+                                <td><span>${skipass.price}</span> Kc</td>
+                                <td><a class="btn btn-success btn-xs skipassBtn" href="#"
+                                       data-idskipass="${skipass.idSkipass}" data-price="${skipass.price}"
+                                       data-numdays="${skipass.numberOfDays}">Pridat!</a></td>
                             </tr>
 
                         </c:forEach>

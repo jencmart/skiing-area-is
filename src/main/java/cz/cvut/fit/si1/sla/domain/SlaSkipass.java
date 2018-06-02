@@ -3,6 +3,9 @@ package cz.cvut.fit.si1.sla.domain;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents skipass with price in the database
+ */
 @Entity
 @Table(name = "sla_skipass")
 public class SlaSkipass {

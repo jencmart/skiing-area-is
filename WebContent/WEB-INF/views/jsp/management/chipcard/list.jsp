@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/chipcard"/>
+<c:set var="contextUrl" value="/management/chipcard"/>
 
 <t:genericPageManagment title="SLA | Chipcard" viewname="chipcard">
 
@@ -26,7 +26,7 @@
             <li class="active"><i class="fa fa-edit"></i> Cipove karty</li>
             <li class="active">
                 <a href="${addOrderUrl}" class="btn btn-success">Přidat kartu</a>
-                <a href="#" class="btn btn-warning returnCard">  <i class="fa fa-arrow-left "></i> Vratit kartu</a>
+                <a href="#" class="btn btn-warning returnCard"> <i class="fa fa-arrow-left "></i> Vratit kartu</a>
             </li>
 
             <li class="active">
@@ -120,17 +120,18 @@
                         <td>
 
                             <spring:url value="${contextUrl}/${chipCard.idChipCard}" var="detailUrl"/>
-                            <spring:url value="${contextUrl}/${chipCard.idChipCard}/update" var="updateUrl" />
-                            <spring:url value="${contextUrl}/${chipCard.idChipCard}/delete" var="deleteUrl" />
-                            <form action = "${deleteUrl}" method = "post">
-                                    <a class="btn  btn-xs btn-success" href="${detailUrl}">
-                                        <i class="fa fa-search  fa-xs "></i> Detail</a>
+                            <spring:url value="${contextUrl}/${chipCard.idChipCard}/update" var="updateUrl"/>
+                            <spring:url value="${contextUrl}/${chipCard.idChipCard}/delete" var="deleteUrl"/>
+                            <form action="${deleteUrl}" method="post">
+                                <a class="btn  btn-xs btn-success" href="${detailUrl}">
+                                    <i class="fa fa-search  fa-xs "></i> Detail</a>
 
-                                    <a class="btn  btn-xs btn-warning" href="${updateUrl}">
-                                        <i class="fa fa-edit  fa-xs "></i> Upravit</a>
+                                <a class="btn  btn-xs btn-warning" href="${updateUrl}">
+                                    <i class="fa fa-edit  fa-xs "></i> Upravit</a>
 
                                 <button class="btn btn-xs btn-danger"
-                                        type="submit"> <i class="fa fa-trash  fa-xs "></i> Smazat</button>
+                                        type="submit"><i class="fa fa-trash  fa-xs "></i> Smazat
+                                </button>
                                 <sec:csrfInput/>
                             </form>
 
@@ -156,13 +157,13 @@
             </div>
             <div class="modal-body">
 
-                <form action = "${returnCardUrl}" method = "post">
+                <form action="${returnCardUrl}" method="post">
 
                     <p>Naskenujte cipovou kartu.</p>
 
                     <div class="form-group">
                         <label for="rfid">RFID</label>
-                        <input  class="form-control" id="rfid" name="rfid" placeholder="Zadejte RFID">
+                        <input class="form-control" id="rfid" name="rfid" placeholder="Zadejte RFID">
                     </div>
 
                     <sec:csrfInput/>

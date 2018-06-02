@@ -3,6 +3,9 @@ package cz.cvut.fit.si1.sla.domain;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+/**
+ * Represents address in the database
+ */
 @Entity
 @Table(name = "sla_address")
 public class SlaAddress {

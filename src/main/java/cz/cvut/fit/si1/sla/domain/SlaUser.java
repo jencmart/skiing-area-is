@@ -11,6 +11,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents user in the database
+ */
 @Entity
 @Table(name = "sla_user")
 public class SlaUser implements UserDetails {

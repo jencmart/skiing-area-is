@@ -1,13 +1,13 @@
-<%@ page session="false"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="false" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<jsp:include page="../fragments/header.jsp" />
+<jsp:include page="../fragments/header.jsp"/>
 
 <div class="container">
 
@@ -19,22 +19,22 @@
             <h1>Update User</h1>
         </c:otherwise>
     </c:choose>
-    <br />
+    <br/>
 
-    <spring:url value="/users" var="userActionUrl" />
+    <spring:url value="/users" var="userActionUrl"/>
 
     <form:form class="form-horizontal" method="post"
                modelAttribute="userForm" action="${userActionUrl}">
 
-        <form:hidden path="id" />
+        <form:hidden path="id"/>
 
         <spring:bind path="name">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
                     <form:input path="name" type="text" class="form-control"
-                                id="name" placeholder="Name" />
-                    <form:errors path="name" class="control-label" />
+                                id="name" placeholder="Name"/>
+                    <form:errors path="name" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -44,8 +44,8 @@
                 <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
                     <form:input path="email" class="form-control"
-                                id="email" placeholder="Email" />
-                    <form:errors path="email" class="control-label" />
+                                id="email" placeholder="Email"/>
+                    <form:errors path="email" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -55,8 +55,8 @@
                 <label class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
                     <form:password path="password" class="form-control"
-                                   id="password" placeholder="password" />
-                    <form:errors path="password" class="control-label" />
+                                   id="password" placeholder="password"/>
+                    <form:errors path="password" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -66,8 +66,8 @@
                 <label class="col-sm-2 control-label">confirm Password</label>
                 <div class="col-sm-10">
                     <form:password path="confirmPassword" class="form-control"
-                                   id="password" placeholder="password" />
-                    <form:errors path="confirmPassword" class="control-label" />
+                                   id="password" placeholder="password"/>
+                    <form:errors path="confirmPassword" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -77,8 +77,8 @@
                 <label class="col-sm-2 control-label">Address</label>
                 <div class="col-sm-10">
                     <form:textarea path="address" rows="5" class="form-control"
-                                   id="address" placeholder="address" />
-                    <form:errors path="address" class="control-label" />
+                                   id="address" placeholder="address"/>
+                    <form:errors path="address" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -89,9 +89,9 @@
                 <div class="col-sm-10">
                     <div class="checkbox">
                         <label>
-                            <form:checkbox path="newsletter" id="newsletter" />
+                            <form:checkbox path="newsletter" id="newsletter"/>
                         </label>
-                        <form:errors path="newsletter" class="control-label" />
+                        <form:errors path="newsletter" class="control-label"/>
                     </div>
                 </div>
             </div>
@@ -102,9 +102,9 @@
                 <label class="col-sm-2 control-label">Web Frameworks</label>
                 <div class="col-sm-10">
                     <form:checkboxes path="framework" items="${frameworkList}"
-                                     element="label class='checkbox-inline'" />
-                    <br />
-                    <form:errors path="framework" class="control-label" />
+                                     element="label class='checkbox-inline'"/>
+                    <br/>
+                    <form:errors path="framework" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -114,12 +114,12 @@
                 <label class="col-sm-2 control-label">Sex</label>
                 <div class="col-sm-10">
                     <label class="radio-inline">
-                        <form:radiobutton path="sex" value="M" /> Male
+                        <form:radiobutton path="sex" value="M"/> Male
                     </label>
                     <label class="radio-inline">
-                        <form:radiobutton path="sex" value="F" /> Female
-                    </label> <br />
-                    <form:errors path="sex" class="control-label" />
+                        <form:radiobutton path="sex" value="F"/> Female
+                    </label> <br/>
+                    <form:errors path="sex" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -129,9 +129,9 @@
                 <label class="col-sm-2 control-label">Number</label>
                 <div class="col-sm-10">
                     <form:radiobuttons path="number" items="${numberList}"
-                                       element="label class='radio-inline'" />
-                    <br />
-                    <form:errors path="number" class="control-label" />
+                                       element="label class='radio-inline'"/>
+                    <br/>
+                    <form:errors path="number" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -141,10 +141,10 @@
                 <label class="col-sm-2 control-label">Country</label>
                 <div class="col-sm-5">
                     <form:select path="country" class="form-control">
-                        <form:option value="NONE" label="--- Select ---" />
-                        <form:options items="${countryList}" />
+                        <form:option value="NONE" label="--- Select ---"/>
+                        <form:options items="${countryList}"/>
                     </form:select>
-                    <form:errors path="country" class="control-label" />
+                    <form:errors path="country" class="control-label"/>
                 </div>
                 <div class="col-sm-5"></div>
             </div>
@@ -155,8 +155,8 @@
                 <label class="col-sm-2 control-label">Java Skills</label>
                 <div class="col-sm-5">
                     <form:select path="skill" items="${javaSkillList}"
-                                 multiple="true" size="5" class="form-control" />
-                    <form:errors path="skill" class="control-label" />
+                                 multiple="true" size="5" class="form-control"/>
+                    <form:errors path="skill" class="control-label"/>
                 </div>
                 <div class="col-sm-5"></div>
             </div>
@@ -180,7 +180,7 @@
 
 </div>
 
-<jsp:include page="../fragments/footer.jsp" />
+<jsp:include page="../fragments/footer.jsp"/>
 
 </body>
 </html>

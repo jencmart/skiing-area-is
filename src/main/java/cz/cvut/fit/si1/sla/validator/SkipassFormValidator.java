@@ -7,7 +7,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-
+/**
+ * Data transfer object for skipass form validation
+ */
 @Component
 public class SkipassFormValidator implements Validator {
 

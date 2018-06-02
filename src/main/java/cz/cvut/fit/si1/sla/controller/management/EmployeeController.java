@@ -4,8 +4,8 @@ package cz.cvut.fit.si1.sla.controller.management;
 import cz.cvut.fit.si1.sla.domain.SlaEmployee;
 import cz.cvut.fit.si1.sla.domain.SlaJob;
 import cz.cvut.fit.si1.sla.dto.EmployeeUserRegisterDto;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaEmployeeService;
-import cz.cvut.fit.si1.sla.serviceImpl.UserService;
+import cz.cvut.fit.si1.sla.service.SlaEmployeeService;
+import cz.cvut.fit.si1.sla.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controller for managing employees
+ */
 @Controller
 @RequestMapping("/management/employee")
 public class EmployeeController {
@@ -40,7 +43,12 @@ public class EmployeeController {
     @Autowired
     UserService userService;
 
-    // LIST CUSTOMERS
+    /**
+     * List all employees
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllEmployees(Model model) {
         model.addAttribute(allObjectsAttribute, employeeService.getAllList());
@@ -61,8 +69,13 @@ public class EmployeeController {
         return viewList;
     }
 
-
-    // SHOW CUSTOMER
+    /**
+     * Show certain employee
+     *
+     * @param id    id of employee
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showEmployee(@PathVariable("id") int id, Model model) {
 
@@ -75,6 +88,14 @@ public class EmployeeController {
         return viewShow;
     }
 
+    /**
+     * Save employee
+     *
+     * @param employeeUserRegisterDto dto of employee filled from form
+     * @param model                   model
+     * @param redirectAttributes      redirect
+     * @return redirect to new employee
+     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveEmployee(@ModelAttribute("employeeForm") EmployeeUserRegisterDto employeeUserRegisterDto,
                                Model model,
@@ -87,6 +108,4 @@ public class EmployeeController {
 
         return "redirect:/management/employee/" + employee.getIdEmployee();
     }
-
-
 }

@@ -7,6 +7,7 @@ import cz.cvut.fit.si1.sla.domain.SlaUser;
 import cz.cvut.fit.si1.sla.domain.SlaUserRole;
 import cz.cvut.fit.si1.sla.dto.CustomerUserDto;
 import cz.cvut.fit.si1.sla.dto.EmployeeUserRegisterDto;
+import cz.cvut.fit.si1.sla.service.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +20,7 @@ import java.util.Random;
 
 @Service
 @Transactional
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     SlaUserRoleDao userRoleDao;
@@ -43,10 +44,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public SlaUser loadUserByUserame(String username) {
+    @Override
+    public SlaUser loadUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
 
+    @Override
     public SlaUser registerNewCustomer(CustomerUserDto customerUserDto) {
         //create customer
         SlaCustomer customer = new SlaCustomer();
@@ -74,10 +77,12 @@ public class UserService {
         return user;
     }
 
+    @Override
     public List<SlaUser> getAllList() {
         return userDao.getAllUsers();
     }
 
+    @Override
     public SlaEmployee registerNewEmployee(EmployeeUserRegisterDto employeeUserRegisterDto) {
 
         SlaEmployee employee = new SlaEmployee();

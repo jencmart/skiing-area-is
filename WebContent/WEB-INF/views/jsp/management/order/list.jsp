@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/order"/>
+<c:set var="contextUrl" value="/management/order"/>
 
 <t:genericPageManagment title="SLA | Objednavky" viewname="order">
 
@@ -80,7 +80,7 @@
                     <th>C. objednavky<i class="fa fa-sort"></i></th>
                     <th>Zakaznik <i class="fa fa-sort"></i></th>
                     <th>Zaplaceno <i class="fa fa-sort"></i></th>
-                    <th>Vytvoreno </th>
+                    <th>Vytvoreno</th>
                     <th>Moznosti <i class=""></i></th>
                 </tr>
                 </thead>
@@ -93,7 +93,7 @@
                         <td>${order.idOrder}</td>
 
                         <c:if test="${empty order.customer}">
-                        <td> POKLADNA </td>
+                        <td> POKLADNA</td>
                         </c:if>
 
                         <c:if test="${not empty order.customer}">
@@ -118,12 +118,13 @@
                         <td>
                             <spring:url value="${contextUrl}/${order.idOrder}" var="detailUrl"/>
                             <spring:url value="${contextUrl}/${order.idOrder}/pay" var="payUrl"/>
-                            <form action = "${payUrl}" method = "post">
+                            <form action="${payUrl}" method="post">
                                 <a class="btn  btn-xs btn-success" href="${detailUrl}">
                                     <i class="fa fa-search  fa-xs "></i> Detail</a>
                                 <c:if test="${order.paid == false}">
                                 <button class="btn btn-xs btn-danger"
-                                        type="submit"> <i class="fa fa-money  fa-xs "></i> Zaplatit</button>
+                                        type="submit"><i class="fa fa-money  fa-xs "></i> Zaplatit
+                                </button>
                                 <sec:csrfInput/>
                                 </c:if>
                             </form>
@@ -154,13 +155,13 @@
             </div>
             <div class="modal-body">
 
-                <form action = "${findOrderUrl}" method = "get">
+                <form action="${findOrderUrl}" method="get">
 
                     <p>Zadejte cislo objednavky.</p>
 
                     <div class="form-group">
                         <label for="number">Cislo objednavky</label>
-                        <input  class="form-control" id="number" name="number" placeholder="Cislo objednavky">
+                        <input class="form-control" id="number" name="number" placeholder="Cislo objednavky">
                     </div>
                     <sec:csrfInput/>
                     <button type="submit" class="btn btn-primary" id="find">Vyhledat</button>

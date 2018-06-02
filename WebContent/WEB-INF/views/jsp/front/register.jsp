@@ -19,11 +19,11 @@
             <spring:url value="/registration" var="checkoutConfirmAction"/>
 
 
-    <form:form class="form-horizontal" method="post" modelAttribute="customerUserFrom"
-               action="${checkoutConfirmAction}">
+            <form:form class="form-horizontal" method="post" modelAttribute="customerUserFrom"
+                       action="${checkoutConfirmAction}">
 
     <%-- Name --%>
-    <c:set var="from1" value="name"/>
+                <c:set var="from1" value="name"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Jmeno</label>
@@ -35,8 +35,8 @@
                 </div>
     </spring:bind>
 
-    <%-- Surname --%>
-    <c:set var="from1" value="surname"/>
+                <%-- Surname --%>
+                <c:set var="from1" value="surname"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Prijmeni</label>
@@ -48,8 +48,8 @@
                 </div>
     </spring:bind>
 
-    <%-- Password --%>
-    <c:set var="from1" value="password"/>
+                <%-- Password --%>
+                <c:set var="from1" value="password"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Heslo</label>
@@ -61,8 +61,8 @@
                 </div>
     </spring:bind>
 
-    <%-- Password confirmation --%>
-    <c:set var="from1" value="passwordConfirmation"/>
+                <%-- Password confirmation --%>
+                <c:set var="from1" value="passwordConfirmation"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Potvrzeni hesla</label>
@@ -74,8 +74,8 @@
                 </div>
     </spring:bind>
 
-    <%-- Email --%>
-    <c:set var="from1" value="email"/>
+                <%-- Email --%>
+                <c:set var="from1" value="email"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Email</label>
@@ -87,8 +87,8 @@
                 </div>
     </spring:bind>
 
-    <%-- Phone --%>
-    <c:set var="from1" value="phone"/>
+                <%-- Phone --%>
+                <c:set var="from1" value="phone"/>
     <spring:bind path="${from1}">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="col-sm-2 control-label">Telefon</label>
@@ -102,15 +102,15 @@
 
         <sec:csrfInput/>
 
-        <%--ACTION BUTTONS --%>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn-lg btn-success pull-right">Registrovat</button>
-            </div>
-        </div>
+                <%--ACTION BUTTONS --%>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn-lg btn-success pull-right">Registrovat</button>
+                    </div>
+                </div>
 
     </form:form>
-</div>
+        </div>
 
     </jsp:attribute>
 

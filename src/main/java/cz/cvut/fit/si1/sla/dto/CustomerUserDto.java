@@ -5,6 +5,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Data transfer object for customer user
+ */
 public class CustomerUserDto {
 
     @NotNull

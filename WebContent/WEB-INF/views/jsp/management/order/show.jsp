@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/order"/>
+<c:set var="contextUrl" value="/management/order"/>
 
 <t:genericPageManagment title="SLA | Objednavka detail" viewname="order">
 
@@ -50,11 +50,11 @@
                         POKLADNA
                         </c:if>
 
-            <c:if test="${not empty slaOrder.customer}">
+                <c:if test="${not empty slaOrder.customer}">
                         ${slaOrder.customer.name} ${slaOrder.customer.surname}
                         </c:if>
 
-           </div>
+            </div>
         </div>
 
 
@@ -68,10 +68,11 @@
 
         <div class="row">
             <spring:url value="${contextUrl}/${slaOrder.idOrder}/pay" var="payUrl"/>
-            <form action = "${payUrl}" method = "post">
+            <form action="${payUrl}" method="post">
                 <c:if test="${slaOrder.paid == false}">
                 <button class="btn btn-danger"
-                        type="submit"> <i class="fa fa-money  fa-xs "></i> Zaplatit</button>
+                        type="submit"><i class="fa fa-money  fa-xs "></i> Zaplatit
+                </button>
                 <sec:csrfInput/>
                 </c:if>
             </form>
@@ -103,11 +104,11 @@
 
                         <td>
                              <c:choose>
-                                     <c:when test = "${article.cardRented && ! article.cardReturned}">
+                                     <c:when test="${article.cardRented && ! article.cardReturned}">
                                            <span class="label label-danger">RFID Zapujcena</span>
                                      </c:when>
 
-                                     <c:when test = "${article.cardRented && article.cardReturned}">
+                                     <c:when test="${article.cardRented && article.cardReturned}">
                                            <span class="label label-success">RFID Vracena</span>
                                      </c:when>
 
@@ -118,19 +119,30 @@
                         </td>
 
                         <td>
-                            <spring:url value="${contextUrl}/${slaOrder.idOrder}/rent/${article.idOrderSkipasArticle}" var="rentUrl"/>
-                            <spring:url value="${contextUrl}/${slaOrder.idOrder}/return/${article.idOrderSkipasArticle}/update" var="returnUrl" />
-                            <spring:url value="${contextUrl}/${slaOrder.idOrder}/lost/${article.idOrderSkipasArticle}/delete" var="lostUrl" />
+                            <spring:url value="${contextUrl}/${slaOrder.idOrder}/rent/${article.idOrderSkipasArticle}"
+                                        var="rentUrl"/>
+                            <spring:url
+                                    value="${contextUrl}/${slaOrder.idOrder}/return/${article.idOrderSkipasArticle}/update"
+                                    var="returnUrl"/>
+                            <spring:url
+                                    value="${contextUrl}/${slaOrder.idOrder}/lost/${article.idOrderSkipasArticle}/delete"
+                                    var="lostUrl"/>
 
-                      <c:choose>
-                          <c:when test = "${! article.cardRented}">
-                                    <a class="btn  btn-xs btn-warning rent" data-order="${slaOrder.idOrder}" data-article="${article.idOrderSkipasArticle}" href="#">Zapujcit RFID <i class="fa fa-arrow-right  fa-xs "></i></a>
+                            <c:choose>
+                          <c:when test="${! article.cardRented}">
+                                    <a class="btn  btn-xs btn-warning rent" data-order="${slaOrder.idOrder}"
+                                       data-article="${article.idOrderSkipasArticle}" href="#">Zapujcit RFID <i
+                                            class="fa fa-arrow-right  fa-xs "></i></a>
                                      </c:when>
 
                                      <c:otherwise>
 
-                                         <a class="btn  btn-xs btn-success return" data-order="${slaOrder.idOrder}" data-article="${article.idOrderSkipasArticle}" href="#"><i class="fa  fa-arrow-left  fa-xs "></i> Vratit RFID</a>
-                                         <a class="btn  btn-xs btn-danger lost" data-order="${slaOrder.idOrder}" data-article="${article.idOrderSkipasArticle}"  href="#"><i class="fa  fa-trash  fa-xs "></i> Ztrata </a>
+                                         <a class="btn  btn-xs btn-success return" data-order="${slaOrder.idOrder}"
+                                            data-article="${article.idOrderSkipasArticle}" href="#"><i
+                                                 class="fa  fa-arrow-left  fa-xs "></i> Vratit RFID</a>
+                                         <a class="btn  btn-xs btn-danger lost" data-order="${slaOrder.idOrder}"
+                                            data-article="${article.idOrderSkipasArticle}" href="#"><i
+                                                 class="fa  fa-trash  fa-xs "></i> Ztrata </a>
                                      </c:otherwise>
                                </c:choose>
 
@@ -144,7 +156,6 @@
         </div>
 
     </div>
-
 
 
 </div>
@@ -162,14 +173,13 @@
             <div class="modal-body">
 
 
-
                 <form id="target" action="">
 
                     <p>Naskenujte cipovou kartu.</p>
 
                     <div class="form-group">
                         <label for="rfid">RFID</label>
-                        <input  class="form-control" id="rfid" placeholder="Zadejte RFID">
+                        <input class="form-control" id="rfid" placeholder="Zadejte RFID">
                     </div>
 
                     <input type="hidden" name="orderid" value="">

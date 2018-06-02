@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/employee"/>
+<c:set var="contextUrl" value="/management/employee"/>
 
 <t:genericPageManagment title="SLA | Zamestnanci" viewname="employee">
 
@@ -21,7 +21,7 @@
         <ol class="breadcrumb">
             <li class="active"><i class="fa fa-edit"></i> Zamestnanci</li>
             <li class="active">
-                <a href="#" class="btn btn-success find">  Pridat zamestnance</a>
+                <a href="#" class="btn btn-success find"> Pridat zamestnance</a>
             </li>
         </ol>
     </div>
@@ -74,7 +74,7 @@
 
                         <td>
                             <spring:url value="${contextUrl}/${employee.idEmployee}" var="detailUrl"/>
-                            <spring:url value="${contextUrl}/${employee.idEmployee}/update" var="updateUrl" />
+                            <spring:url value="${contextUrl}/${employee.idEmployee}/update" var="updateUrl"/>
 
                             <a class="btn  btn-xs btn-success" href="${detailUrl}">
                                 <i class="fa fa-search  fa-xs "></i> Detail</a>
@@ -98,15 +98,15 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Pridat zamestnance</h4>
             </div>
-    <div class="modal-body">
+            <div class="modal-body">
 
-        <spring:url value="/management/employee" var="saveEmployee"/>
+                <spring:url value="/management/employee" var="saveEmployee"/>
 
-            <%--FORM --%>
-        <form:form class="form-horizontal" method="post" modelAttribute="employeeForm" action="${saveEmployee}">
+                    <%--FORM --%>
+                <form:form class="form-horizontal" method="post" modelAttribute="employeeForm" action="${saveEmployee}">
 
         <%-- JMENO --%>
-           <c:set var="from1" value="name"/>
+                    <c:set var="from1" value="name"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Jmeno</label>
@@ -118,8 +118,8 @@
             </div>
         </spring:bind>
 
-            <%--PRIJMENI --%>
-            <c:set var="from1" value="surname"/>
+                    <%--PRIJMENI --%>
+                    <c:set var="from1" value="surname"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Prijmeni</label>
@@ -131,8 +131,8 @@
             </div>
         </spring:bind>
 
-            <%--email --%>
-            <c:set var="from1" value="phone"/>
+                    <%--email --%>
+                    <c:set var="from1" value="phone"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Telefon</label>
@@ -144,8 +144,8 @@
             </div>
         </spring:bind>
 
-            <%--USERNAME  --%>
-            <c:set var="from1" value="username"/>
+                    <%--USERNAME  --%>
+                    <c:set var="from1" value="username"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Username</label>
@@ -157,8 +157,8 @@
             </div>
         </spring:bind>
 
-            <%--PASSWORD  --%>
-            <c:set var="from1" value="password"/>
+                    <%--PASSWORD  --%>
+                    <c:set var="from1" value="password"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Heslo</label>
@@ -170,8 +170,8 @@
             </div>
         </spring:bind>
 
-            <%--PASSWORD  CONF --%>
-            <c:set var="from1" value="passwordConfirm"/>
+                    <%--PASSWORD  CONF --%>
+                    <c:set var="from1" value="passwordConfirm"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Heslo znovu</label>
@@ -189,18 +189,18 @@
                 <label class="col-sm-2 control-label">Povolani</label>
                 <div class="col-sm-5">
                     <form:select path="job" class="form-control">
-                        <form:option value="NONE" label="--- Vyber ---" />
-                        <form:options items="${jobList}" />
+                        <form:option value="NONE" label="--- Vyber ---"/>
+                        <form:options items="${jobList}"/>
                     </form:select>
-                    <form:errors path="job" class="control-label" />
+                    <form:errors path="job" class="control-label"/>
                 </div>
                 <div class="col-sm-5"></div>
             </div>
         </spring:bind>
 
 
-            <%--LANGUAGES  --%>
-            <c:set var="from1" value="foreignLanguages"/>
+                    <%--LANGUAGES  --%>
+                    <c:set var="from1" value="foreignLanguages"/>
         <spring:bind path="${from1}">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Cizi jazyky</label>
@@ -220,8 +220,7 @@
         </form:form>
 
 
-
-    </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Zavrit</button>
             </div>

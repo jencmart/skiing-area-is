@@ -4,8 +4,8 @@ package cz.cvut.fit.si1.sla.controller.management;
 import cz.cvut.fit.si1.sla.domain.SlaChipCard;
 import cz.cvut.fit.si1.sla.domain.SlaOrderSkipassArticle;
 import cz.cvut.fit.si1.sla.domain.SlaRent;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaChipCardService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaOrderService;
+import cz.cvut.fit.si1.sla.service.SlaChipCardService;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
 import cz.cvut.fit.si1.sla.validator.ChipCardFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.sql.Timestamp;
 import java.util.HashMap;
 
+/**
+ * Controller for managment of chip cards
+ */
 @Controller
 @RequestMapping("/management/chipcard")
 public class ChipCardController {
@@ -49,13 +52,23 @@ public class ChipCardController {
     @Autowired
     SlaOrderService orderService;
 
-    //form validator
+    /**
+     * Form validator
+     *
+     * @param binder binder
+     */
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(chipCardFormValidator);
     }
 
-    // LIST CHIP CARDS
+
+    /**
+     * List all chip cards
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllChipCards(Model model) {
         //     logger.debug("showAllChipCards()");
@@ -68,6 +81,16 @@ public class ChipCardController {
     // 1. @ModelAttribute bind form value
     // 2. @Validated form validator
     // 3. RedirectAttributes for flash value
+
+    /**
+     * Save or update chip card
+     *
+     * @param slaChipCard        chip card (bind form value, form validator)
+     * @param result             result
+     * @param model              model
+     * @param redirectAttributes redirect for flash value
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveOrUpdateChipCard(@ModelAttribute(formAttribute) @Validated SlaChipCard slaChipCard,
                                        BindingResult result, Model model,
@@ -100,7 +123,13 @@ public class ChipCardController {
         }
     }
 
-    // FORM ADD CHIP CARD
+
+    /**
+     * Add chip card show form
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String showAddSlaChipCardForm(Model model) {
 
@@ -110,6 +139,14 @@ public class ChipCardController {
         return viewForm;
     }
 
+    /**
+     * Return chip card form
+     *
+     * @param rfid               rfid
+     * @param model              model
+     * @param redirectAttributes redirect
+     * @return redirect
+     */
     @RequestMapping(value = "/return", method = RequestMethod.POST)
     public String returnChipCardForm(@RequestParam(value = "rfid") String rfid, Model model,
                                      final RedirectAttributes redirectAttributes) {
@@ -134,8 +171,13 @@ public class ChipCardController {
         return "redirect:" + contextRedirect;
     }
 
+    /**
+     * Try to return rented chip card
+     *
+     * @param rfid rfid
+     * @return is card returned
+     */
     private boolean returnCard(String rfid) {
-
 
         SlaChipCard chipCard = chipCardService.findByRfidIdFetch(rfid);
 
@@ -162,7 +204,13 @@ public class ChipCardController {
     }
 
 
-    // FORM UPDATE CHIP CARD
+    /**
+     * Form update chip card (GET)
+     *
+     * @param id    id of card
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateSlaChipCardForm(@PathVariable("id") int id, Model model) {
 
@@ -172,7 +220,13 @@ public class ChipCardController {
         return viewForm;
     }
 
-    // DELETE CHIP CARD
+    /**
+     * Delete chip card
+     *
+     * @param id                 id of card
+     * @param redirectAttributes redirect
+     * @return redirect
+     */
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     public String deleteSlaChipCard(@PathVariable("id") long id,
                                     final RedirectAttributes redirectAttributes) {
@@ -185,7 +239,13 @@ public class ChipCardController {
         return "redirect:" + contextRedirect;
     }
 
-    // SHOW CHIP CARD
+    /**
+     * Show chip card
+     *
+     * @param id    id of card
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showSlaChipCard(@PathVariable("id") int id, Model model) {
 
@@ -199,7 +259,13 @@ public class ChipCardController {
         return viewShow;
     }
 
-    // SHOW CHIP CARD
+    /**
+     * Ajax show chip card
+     *
+     * @param id    id of card
+     * @param model model
+     * @return chip card
+     */
     @RequestMapping(value = "/ajaxFind/{id}", method = RequestMethod.GET)
     public @ResponseBody
     HashMap<String, String> ajaxFindChipCard(@PathVariable("id") String id, Model model) {
@@ -219,5 +285,4 @@ public class ChipCardController {
         }
         return null;
     }
-
 }

@@ -4,6 +4,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Data transfer object for user login
+ */
 public class UserLoginDto {
 
     @NotNull

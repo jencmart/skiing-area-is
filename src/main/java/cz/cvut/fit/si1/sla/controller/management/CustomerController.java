@@ -2,8 +2,8 @@ package cz.cvut.fit.si1.sla.controller.management;
 
 
 import cz.cvut.fit.si1.sla.domain.SlaCustomer;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaCustomerService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaOrderService;
+import cz.cvut.fit.si1.sla.service.SlaCustomerService;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+/**
+ * Controller for managing customers
+ */
 @Controller
 @RequestMapping("/management/customer")
 public class CustomerController {
 
 
     // private final Logger logger = LoggerFactory.getLogger(ChipCardController.class);
-
-
     private static final String flashMsgNotFound = "Zakaznik nenalezen!";
 
     private static final String viewList = "jsp/management/customer/list";
@@ -39,7 +40,12 @@ public class CustomerController {
     @Autowired
     SlaOrderService orderService;
 
-    // LIST CUSTOMERS
+    /**
+     * List all customers
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllCustomers(Model model) {
         model.addAttribute(allObjectsAttribute, customerService.getAllList());
@@ -48,7 +54,13 @@ public class CustomerController {
     }
 
 
-    // SHOW CUSTOMER
+    /**
+     * Show certain customer
+     *
+     * @param id    id of customer
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showCustomer(@PathVariable("id") int id, Model model) {
 
@@ -61,7 +73,13 @@ public class CustomerController {
         return viewShow;
     }
 
-    // SHOW CUSTOMER
+    /**
+     * Find customer by customer
+     *
+     * @param customer customer (some values can be null)
+     * @param model    model
+     * @return view
+     */
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public String findCustomer(@ModelAttribute SlaCustomer customer, Model model) {
 
@@ -77,6 +95,4 @@ public class CustomerController {
 
         return viewList;
     }
-
-
 }

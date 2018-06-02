@@ -2,7 +2,7 @@ package cz.cvut.fit.si1.sla.controller.management;
 
 
 import cz.cvut.fit.si1.sla.domain.SlaSkipass;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaSkipassService;
+import cz.cvut.fit.si1.sla.service.SlaSkipassService;
 import cz.cvut.fit.si1.sla.validator.SkipassFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+/**
+ * Controller for managing skipass
+ */
 @Controller
 @RequestMapping("/management/skipass")
 public class SkiPassController {
@@ -44,7 +47,12 @@ public class SkiPassController {
         binder.setValidator(skipassFormValidator);
     }
 
-    // LIST SKIPASS
+    /**
+     * List all skipasses
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllSkipass(Model model) {
 
@@ -53,10 +61,15 @@ public class SkiPassController {
         return viewList;
     }
 
-    // SAVE or UPDATE slaSkipass
-    // 1. @ModelAttribute bind form value
-    // 2. @Validated form validator
-    // 3. RedirectAttributes for flash value
+    /**
+     * Save or update skipass
+     *
+     * @param slaSkipass         skipass (binded from form values, validated)
+     * @param result             result of binding
+     * @param model              model
+     * @param redirectAttributes redirect
+     * @return redirect to skipass
+     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String saveOrUpdateChipCard(@ModelAttribute(formAttribute) @Validated SlaSkipass slaSkipass,
                                        BindingResult result, Model model,
@@ -87,7 +100,12 @@ public class SkiPassController {
         }
     }
 
-    // FORM ADD SKIPASS
+    /**
+     * Add skipass (GET) form
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String showAddSlaSkipassForm(Model model) {
 
@@ -97,7 +115,13 @@ public class SkiPassController {
         return viewForm;
     }
 
-    // FORM UPDATE SKIPASS
+    /**
+     * Update skipass form
+     *
+     * @param id    id of skipass
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateSlaSkipassForm(@PathVariable("id") int id, Model model) {
 
@@ -107,7 +131,13 @@ public class SkiPassController {
         return viewForm;
     }
 
-    // DELETE SKIPASS
+    /**
+     * Delete skipass by id
+     *
+     * @param id                 id of skipass
+     * @param redirectAttributes redirect
+     * @return redirect
+     */
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     public String deleteSlaSkipass(@PathVariable("id") long id,
                                    final RedirectAttributes redirectAttributes) {
@@ -120,7 +150,13 @@ public class SkiPassController {
         return "redirect:" + contextRedirect;
     }
 
-    // SHOW SKIPASS
+    /**
+     * Show skipass by id
+     *
+     * @param id    id of skipass
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showSlaSkipass(@PathVariable("id") int id, Model model) {
 
@@ -133,5 +169,4 @@ public class SkiPassController {
 
         return viewShow;
     }
-
 }

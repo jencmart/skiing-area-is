@@ -28,7 +28,7 @@ With Maven Jetty plugin it can be easily deployed.
 
 ### Installing
 
-1. Create database
+1. Create database ( skiingAreaIS_db_dump.sql )
 
 2. Edit DB connection properties in application.properties accordingly
 

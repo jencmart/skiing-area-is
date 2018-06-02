@@ -7,6 +7,7 @@ import cz.cvut.fit.si1.sla.dao.SlaRentDao;
 import cz.cvut.fit.si1.sla.domain.*;
 import cz.cvut.fit.si1.sla.dto.RentDto;
 import cz.cvut.fit.si1.sla.model.CartItem;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SlaOrderService {
+public class SlaOrderServiceImpl implements SlaOrderService {
 
     @Autowired
     SlaOrderDao orderDao;
@@ -33,15 +34,18 @@ public class SlaOrderService {
     SlaChipCardDao chipCardDao;
 
 
+    @Override
     public List<SlaOrder> getAllList() {
         return orderDao.getAllOrders();
     }
 
 
+    @Override
     public SlaOrder findById(Integer id) {
         return orderDao.getOneOrder(id.longValue());
     }
 
+    @Override
     public SlaOrder createOrderFromCartItems(SlaCustomer customer, List<CartItem> cartItems) {
 
         //create new order
@@ -81,6 +85,7 @@ public class SlaOrderService {
         return articles;
     }
 
+    @Override
     public List<SlaOrderSkipassArticle> getArticles(SlaOrder slaOrder) {
 
 
@@ -88,10 +93,12 @@ public class SlaOrderService {
     }
 
 
+    @Override
     public List<SlaOrderSkipassArticle> getAllArticlesList() {
         return articleDao.getAllOrderSkipassArticles();
     }
 
+    @Override
     public void rent(RentDto rentDto) {
 
         SlaRent rent = new SlaRent();
@@ -120,27 +127,33 @@ public class SlaOrderService {
 
     }
 
+    @Override
     public SlaOrderSkipassArticle getArticle(int idArticle) {
         return articleDao.getOneOrderSkipassArticle((long) idArticle);
     }
 
+    @Override
     public void updateRent(SlaRent rent) {
         rentDao.update(rent);
     }
 
+    @Override
     public void updateArticle(SlaOrderSkipassArticle article) {
         articleDao.update(article);
     }
 
+    @Override
     public List<SlaOrder> getOrdersOfCustomer(SlaCustomer customer) {
 
         return orderDao.getOrdersOfCustomer(customer.getId_customer());
     }
 
+    @Override
     public void updateOrder(SlaOrder order) {
         orderDao.update(order);
     }
 
+    @Override
     public int calculatePrice(SlaOrder slaOrder) {
         int price = 0;
         for (SlaOrderSkipassArticle article : slaOrder.getArticles()) {

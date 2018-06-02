@@ -4,7 +4,9 @@ import cz.cvut.fit.si1.sla.domain.SlaSkipass;
 
 import java.io.Serializable;
 
-// domain object
+/**
+ * Represents cart item which is only saved in session
+ */
 public class CartItem implements Serializable {
 
     private SlaSkipass skipass;

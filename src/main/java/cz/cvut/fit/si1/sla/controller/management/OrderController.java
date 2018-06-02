@@ -6,8 +6,8 @@ import cz.cvut.fit.si1.sla.domain.SlaOrder;
 import cz.cvut.fit.si1.sla.domain.SlaOrderSkipassArticle;
 import cz.cvut.fit.si1.sla.domain.SlaRent;
 import cz.cvut.fit.si1.sla.dto.RentDto;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaChipCardService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaOrderService;
+import cz.cvut.fit.si1.sla.service.SlaChipCardService;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Controller for managing orders
+ */
 @Controller
 @RequestMapping("/management/order")
 public class OrderController {
@@ -48,14 +51,26 @@ public class OrderController {
     @Autowired
     SlaChipCardService chipCardService;
 
-    // LIST ORDERS
+    /**
+     * Lists all orders
+     *
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllChipCards(Model model) {
         model.addAttribute(allObjectsAttribute, orderService.getAllList());
         return viewList;
     }
 
-    // RENT CARD
+    /**
+     * Rents card by id
+     *
+     * @param rent               rent dto
+     * @param id                 id of card
+     * @param redirectAttributes redirect
+     * @return redirect to rented card
+     */
     @RequestMapping(value = "/{id}/rent", method = RequestMethod.POST)
     public String rentRFID(RentDto rent,
                            @PathVariable("id") int id,
@@ -68,7 +83,14 @@ public class OrderController {
         return "redirect:/management/order/" + id;
     }
 
-    // RETURN CARD
+    /**
+     * Return card by id
+     *
+     * @param idOrder            id of order
+     * @param idArticle          id of article
+     * @param redirectAttributes redirect
+     * @return redirect to order
+     */
     @RequestMapping(value = "/{id}/return/{id2}", method = RequestMethod.POST)
     public String returnRFID(@PathVariable("id") int idOrder,
                              @PathVariable("id2") int idArticle,
@@ -107,7 +129,13 @@ public class OrderController {
 
     }
 
-    //  PAY ORDER
+    /**
+     * Pay certain order
+     *
+     * @param id                 id of order
+     * @param redirectAttributes redirect
+     * @return redirect to payed order
+     */
     @RequestMapping(value = "/{id}/pay", method = RequestMethod.POST)
     public String pay(@PathVariable("id") int id,
                       final RedirectAttributes redirectAttributes) {
@@ -133,7 +161,14 @@ public class OrderController {
     }
 
 
-    //  CARD LOST
+    /**
+     * Lost card by id
+     *
+     * @param rent  rent dto
+     * @param id    id of card
+     * @param model model
+     * @return redirect to order
+     */
     @RequestMapping(value = "/{id}/lost", method = RequestMethod.POST)
     public String lostRFID(RentDto rent, @PathVariable("id") int id, Model model) {
         // todo
@@ -147,6 +182,13 @@ public class OrderController {
     }
 
 
+    /**
+     * Find order by id
+     *
+     * @param number             id of order
+     * @param redirectAttributes redirect
+     * @return redirect to order
+     */
     @RequestMapping(value = "/find", method = RequestMethod.GET)
     public String findOrder(@RequestParam("number") int number,
                             final RedirectAttributes redirectAttributes) {
@@ -167,7 +209,13 @@ public class OrderController {
         return "redirect:" + "/management/order/" + number;
     }
 
-    // SHOW ORDER
+    /**
+     * Show order by id
+     *
+     * @param id    id of order
+     * @param model model
+     * @return view
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String showOrder(@PathVariable("id") int id, Model model) {
 
@@ -187,5 +235,4 @@ public class OrderController {
         model.addAttribute("price", price);
         return viewShow;
     }
-
 }

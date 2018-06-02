@@ -5,10 +5,10 @@ import cz.cvut.fit.si1.sla.domain.SlaOrder;
 import cz.cvut.fit.si1.sla.domain.SlaOrderSkipassArticle;
 import cz.cvut.fit.si1.sla.domain.SlaSkipass;
 import cz.cvut.fit.si1.sla.model.ShoppingCart;
-import cz.cvut.fit.si1.sla.serviceImpl.ShoppingCartService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaCustomerService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaOrderService;
-import cz.cvut.fit.si1.sla.serviceImpl.SlaSkipassService;
+import cz.cvut.fit.si1.sla.service.ShoppingCartService;
+import cz.cvut.fit.si1.sla.service.SlaCustomerService;
+import cz.cvut.fit.si1.sla.service.SlaOrderService;
+import cz.cvut.fit.si1.sla.service.SlaSkipassService;
 import cz.cvut.fit.si1.sla.validator.CustomerOrderFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 
+/**
+ * Controller for managing order shopping cart
+ */
 @Controller
 @SessionAttributes("shoppingCart")
 @RequestMapping("/management/order/new")
@@ -44,6 +47,13 @@ public class OrderShoppingCartController {
         return new ShoppingCart();
     }
 
+    /**
+     * Add skipass to shoping cart
+     *
+     * @param id           id of skipass
+     * @param shoppingCart shopping cart in which the skipass will be added
+     * @return number of items in shopping cart
+     */
     @RequestMapping(value = "{id}/add", method = RequestMethod.POST)
     public @ResponseBody
     int addToShoppingCart(@PathVariable("id") long id, @ModelAttribute("shoppingCart") ShoppingCart shoppingCart) {
@@ -55,6 +65,14 @@ public class OrderShoppingCartController {
         return shoppingCartService.nuberOfItems(shoppingCart);
     }
 
+    /**
+     * Change count of skipass in shopping cart
+     *
+     * @param id           id of skipass
+     * @param cnt          count of skipass
+     * @param shoppingCart shopping cart
+     * @return map with count and price
+     */
     @RequestMapping(value = "{id}/setcount/{cnt}", method = RequestMethod.POST)
     public @ResponseBody
     HashMap<String, Long> setCountOfItem(@PathVariable("id") long id, @PathVariable("cnt") int cnt,
@@ -74,6 +92,13 @@ public class OrderShoppingCartController {
         return null;
     }
 
+    /**
+     * Remove skipass from shopping cart
+     *
+     * @param id           id of skipass
+     * @param shoppingCart shopping cart
+     * @return number of items in shopping cart
+     */
     @RequestMapping(value = "{id}/remove", method = RequestMethod.POST)
     public @ResponseBody
     int removeFromShoppingCart(@PathVariable("id") long id,
@@ -88,7 +113,13 @@ public class OrderShoppingCartController {
         return shoppingCartService.nuberOfItems(shoppingCart);
     }
 
-
+    /**
+     * Show all items in shopping cart
+     *
+     * @param model        model
+     * @param shoppingCart shopping cart
+     * @return view
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showAllItems(Model model,
                                @ModelAttribute("shoppingCart") ShoppingCart shoppingCart) {
@@ -99,7 +130,14 @@ public class OrderShoppingCartController {
         return "jsp/management/order/new";
     }
 
-
+    /**
+     * Take shopping carto to checkout
+     *
+     * @param shoppingCart       shopping cart
+     * @param sessionStatus      session status
+     * @param redirectAttributes redirect
+     * @return redirect to management order
+     */
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public String checkoutConfirm(@ModelAttribute("shoppingCart") ShoppingCart shoppingCart,
                                   SessionStatus sessionStatus,
@@ -117,5 +155,4 @@ public class OrderShoppingCartController {
         redirectAttributes.addFlashAttribute("msg", "Cena objednavky " + price + " Kc");
         return "redirect:/management/order/" + order.getIdOrder();
     }
-
 }

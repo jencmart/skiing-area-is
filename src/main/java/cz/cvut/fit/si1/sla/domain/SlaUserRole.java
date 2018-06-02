@@ -2,6 +2,9 @@ package cz.cvut.fit.si1.sla.domain;
 
 import javax.persistence.*;
 
+/**
+ * Represents role of user in the database
+ */
 @Entity
 @Table(name = "sla_user_role")
 public class SlaUserRole {

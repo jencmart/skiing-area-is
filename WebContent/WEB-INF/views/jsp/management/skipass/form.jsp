@@ -53,7 +53,8 @@
 
 
             <%--FORM --%>
-        <form:form class="form-horizontal" method="post" modelAttribute="slaSkipassForm" action="${checkoutConfirmAction}">
+        <form:form class="form-horizontal" method="post" modelAttribute="slaSkipassForm"
+                   action="${checkoutConfirmAction}">
 
 		<form:hidden path="idSkipass"/>
 

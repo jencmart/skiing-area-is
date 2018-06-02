@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+/**
+ * Represents employee in the database
+ */
 @Entity
 @Table(name = "sla_employee")
 public class SlaEmployee {

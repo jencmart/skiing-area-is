@@ -1,5 +1,8 @@
 package cz.cvut.fit.si1.sla.dto;
 
+/**
+ * Data transfer object for rent card
+ */
 public class RentDto {
 
     private int orderId;

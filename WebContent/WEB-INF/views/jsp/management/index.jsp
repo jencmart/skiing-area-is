@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/chipcard"/>
+<c:set var="contextUrl" value="/management/chipcard"/>
 
 <t:genericPageManagment title="SLA | Index" viewname="index">
 
@@ -44,32 +44,32 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Celkovy pocet:</div>
                     <div class="panel-body">
-                      <div class="list-group">
-                          <div class="list-group-item">
-                              Zakazniku: <span class="badge">${cntCustomer}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Zamestnanancu: <span class="badge">${cntEmployee}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Registrovanych uzivatelu: <span class="badge">${cntUser}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Cipovych karet: <span class="badge">${cntChipCard}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Objednavek: <span class="badge">${cntOrder}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Pocet skipasu v eshopu: <span class="badge">${cntSkipass}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Zkoupenych skipassu: <span class="badge">${cntArticles}</span>
-                          </div>
-                          <div class="list-group-item">
-                              Cena vsech zakoupenych pernamentek: <span class="badge">${priceArticles} Kc</span>
-                          </div>
-                      </div>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                Zakazniku: <span class="badge">${cntCustomer}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Zamestnanancu: <span class="badge">${cntEmployee}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Registrovanych uzivatelu: <span class="badge">${cntUser}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Cipovych karet: <span class="badge">${cntChipCard}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Objednavek: <span class="badge">${cntOrder}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Pocet skipasu v eshopu: <span class="badge">${cntSkipass}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Zkoupenych skipassu: <span class="badge">${cntArticles}</span>
+                            </div>
+                            <div class="list-group-item">
+                                Cena vsech zakoupenych pernamentek: <span class="badge">${priceArticles} Kc</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

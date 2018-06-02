@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<c:set var = "contextUrl" value="/management/customer"/>
+<c:set var="contextUrl" value="/management/customer"/>
 
 <t:genericPageManagment title="SLA | Zkakaznik" viewname="customer">
 
@@ -115,31 +115,31 @@
 
                 <spring:url value="${contextUrl}/find" var="findUrl"/>
 
-                <form action = "${findUrl}" method = "get">
+                <form action="${findUrl}" method="get">
 
-                    <input  hidden name="id_customer">
+                    <input hidden name="id_customer">
                     <p>Udaje</p>
 
                     <div class="form-group">
                         <label for="name">Jmeno</label>
-                        <input  class="form-control" id="name" name="name" placeholder="Jmeno">
+                        <input class="form-control" id="name" name="name" placeholder="Jmeno">
                     </div>
 
                     <div class="form-group">
                         <label for="surname">Prijmeni</label>
-                        <input  class="form-control" id="surname" name="surname" placeholder="Prijmeni">
+                        <input class="form-control" id="surname" name="surname" placeholder="Prijmeni">
                     </div>
 
 
                     <div class="form-group">
                         <label for="phone">Telefon</label>
-                        <input  class="form-control" id="phone" name="phone" placeholder="Telefon">
+                        <input class="form-control" id="phone" name="phone" placeholder="Telefon">
                     </div>
 
 
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input  class="form-control" id="email" name="email" placeholder="E-mail">
+                        <input class="form-control" id="email" name="email" placeholder="E-mail">
                     </div>
 
                     <sec:csrfInput/>
