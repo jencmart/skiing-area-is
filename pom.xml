@@ -174,13 +174,13 @@
             <version>${javax.validation-version}</version>
         </dependency>
 
-        <!-- Hibernate validator -->
+        <!-- Hibernate validator
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator-version}</version>
         </dependency>
-
+ -->
 
         <!-- mysql -->
         <dependency>

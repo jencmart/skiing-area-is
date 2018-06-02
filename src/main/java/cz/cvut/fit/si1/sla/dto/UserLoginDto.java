@@ -1,7 +1,5 @@
 package cz.cvut.fit.si1.sla.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -10,11 +8,9 @@ import javax.validation.constraints.NotNull;
 public class UserLoginDto {
 
     @NotNull
-    @NotEmpty
     private String username;
 
     @NotNull
-    @NotEmpty
     private String password;
 
     public String getUsername() {

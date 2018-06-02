@@ -1,8 +1,6 @@
 package cz.cvut.fit.si1.sla.dto;
 
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -11,37 +9,29 @@ import javax.validation.constraints.NotNull;
 public class CustomerUserDto {
 
     @NotNull
-    @NotEmpty
     private String name;
 
     @NotNull
-    @NotEmpty
     private String surname;
 
     @NotNull
-    @NotEmpty
     private String password;
     private String passwordConfirmation;
 
     @NotNull
-    @NotEmpty
     private String email;
 
 
     @NotNull
-    @NotEmpty
     private String phone;
 
     @NotNull
-    @NotEmpty
     private String street;
 
     @NotNull
-    @NotEmpty
     private String city;
 
     @NotNull
-    @NotEmpty
     private String postalCode;
 
     public String getName() {
