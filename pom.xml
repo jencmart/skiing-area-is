@@ -121,6 +121,13 @@
             <version>${org.springframework-version}</version>
         </dependency>
 
+             <!-- Javax validation -->
+        <dependency>
+         <groupId>javax.validation</groupId>
+         <artifactId>validation-api</artifactId>
+         <version>${javax.validation-version}</version>
+        </dependency>
+
         <!-- Jackson API -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
