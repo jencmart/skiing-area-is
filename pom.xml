@@ -16,6 +16,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
@@ -23,9 +24,24 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.5.v20170502</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.5.v20170502</version>
+                <configuration>
+                    <war>${project.basedir}/target/${project.build.finalName}.war</war>
+                </configuration>
+            </plugin>
+
 		</plugins>
 	</build>
-
 
     <properties>
         <java-version>1.7</java-version>
@@ -193,7 +209,6 @@
 			<version>${jstl.version}</version>
 		</dependency>
 
-        <!--????????????????// not needed ?-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

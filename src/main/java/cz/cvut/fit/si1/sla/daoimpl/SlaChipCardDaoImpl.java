@@ -83,6 +83,4 @@ public class SlaChipCardDaoImpl extends AbstractDao implements SlaChipCardDao {
         s.close();
         return chipCard;
     }
-
-
 }

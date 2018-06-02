@@ -1,7 +1,7 @@
 package cz.cvut.fit.si1.sla.controller.front;
 
 import cz.cvut.fit.si1.sla.dto.UserLoginDto;
-import cz.cvut.fit.si1.sla.service.SlaCustomerService;
+import cz.cvut.fit.si1.sla.serviceImpl.SlaCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

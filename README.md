@@ -1,87 +1,81 @@
 # Skiing Area Information System
 
-One Paragraph of project description goes here
-
+```
+      _    _ _                                     _____  _____ 
+     | |  (_|_)               /\                  |_   _|/ ____|
+  ___| | ___ _ _ __   __ _   /  \   _ __ ___  __ _  | | | (___  
+ / __| |/ / | | '_ \ / _` | / /\ \ | '__/ _ \/ _` | | |  \___ \ 
+ \__ \   <| | | | | | (_| |/ ____ \| | |  __/ (_| |_| |_ ____) |
+ |___/_|\_\_|_|_| |_|\__, /_/    \_\_|  \___|\__,_|_____|_____/ 
+                      __/ |                                     
+    by Martin Jenc   |___/                                     
+```
+Software engineering class team project.
+Modeling and documentation team work.
+Implemented by myself.
+ 
 ## Getting Started
+The project has been written in Spring framework with MySQL database. 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+With Maven Jetty plugin it can be easily deployed.
 
 ### Prerequisites
+*   MySQL
+*   Maven
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+1. Create database
 
-Say what the step will be
+2. Edit DB connection properties in application.properties accordingly
 
-```
-Give the example
-```
-
-And repeat
+3. Go to project root folder 
 
 ```
-until finished
+mvn clean install
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
 ```
-Give an example
+mvn jetty:run-war
 ```
+Done! project is deployed to localhost:8080
 
-### And coding style tests
+## Usage
+Project is far from complete. Only these Use Cases were implemented.
+    
+    * Sample Customer account - username: user passwd: user
+    * Sample Employee account - username: admin passwd: admin
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+* As customer you can
+    *   UC1 - register and log in.
+    *   UC2 - anonymously (or logged in) order skipass from e-shop. Basic shopping cart is implemented. No payment or delivery options. (You will get order number with which you'll pay and pick up your order at box office.)
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+* As employee you can
+    *   UC3 - add/remove/edit skipass to e-shop.
+    *   UC4 - add/remove/edit RFID cards.
+    *   UC5 - mark orders as payed.
+    *   UC6 - assign RFID cards to the e-shop orders and lend them to the customers.
+    *   UC7 - receive returned RFID cards.
+    *   UC8 - create new order.
+    *   UC9 - add new employees.
+    *   UC10 - watch some base statistics...
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Spring](https://spring.io/) - The web framework used
+* [Hibernate](https://hibernate.org/) - ORM
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Ema Holinska**      - *Modelling*
+* **Martin Jenc**       - *Modelling*, *Coding*
+* **Martin Kupka**      - *Modelling*
+* **Irina Sushkova**    - *Modelling*
+* **Marek Moucek**      - *Modelling*, *Documentation*
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
